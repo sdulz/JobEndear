@@ -12,6 +12,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error = '';
   bool loading = false;
@@ -74,12 +75,12 @@ class _RegisterState extends State<Register> {
                     icon: Icon(
                       Icons.password,
                     ),
-                  hintText: "Enter Password",
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none, 
+                    hintText: "Enter Password",
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none, 
                     ),
                   
-                   validator: (val) => val!.length<6? 'Password too short': null ,
+                  validator: (val) => val!.length<6? 'Password too short': null ,
                 
                   onChanged: (val){
                     setState(() {
@@ -90,16 +91,18 @@ class _RegisterState extends State<Register> {
             
               SizedBox(height: 20.0),
               ElevatedButton(
-                      child: Text('Register'),
+                  child: Text('Register'),
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.pink[400]),
+                          MaterialStateProperty.all(Colors.pink[400]),
                           textStyle: MaterialStateProperty.all(
-                              TextStyle(color: Colors.white))),
+                          TextStyle(color: Colors.white))),
                       onPressed: () async {
                         if(_formKey.currentState!.validate()){
-                          print(email);
-                          print(password);
+                          dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                         if (result == null) {
+                          setState(() => error = 'Please supply a valid email');
+                          } 
                         }  
                       },
                 )
