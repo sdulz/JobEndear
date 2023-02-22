@@ -1,26 +1,47 @@
 class UserData {
   final String uid;
-  final String name;
   final String email;
-  final bool isAdmin;
+  final String firstName;
+  final String lastName;
+  final String role;
+  final String profileImageUrl;
 
   UserData({
     required this.uid,
-    required this.name,
     required this.email,
-    required this.isAdmin,
+    required this.firstName,
+    required this.lastName,
+    required this.role,
+    required this.profileImageUrl,
   });
+}
 
-  factory UserData.fromMap(Map<String, dynamic>? data) {
-    if (data == null) {
-      return UserData(uid: '', name: '', email: '', isAdmin: false);
-    }
+class Client {
+  final String uid;
+  final String companyName;
+  final String companyAddress;
+  final List<String> projectIds;
 
-    return UserData(
-      uid: data['uid'] ?? '',
-      name: data['name'] ?? '',
-      email: data['email'] ?? '',
-      isAdmin: data['isAdmin'] ?? false,
-    );
-  }
+  Client({
+    required this.uid,
+    required this.companyName,
+    required this.companyAddress,
+    required this.projectIds,
+  });
+}
+
+class Freelancer {
+  final String uid;
+  final String title;
+  final String description;
+  final List<String> skillIds;
+  final List<String> projectIds;
+
+  Freelancer({
+    required this.uid,
+    required this.title,
+    required this.description,
+    required this.skillIds,
+    required this.projectIds,
+  });
 }

@@ -4,11 +4,14 @@ import 'package:job_endear/Screens/wrapper.dart';
 import 'package:job_endear/Services/auth.dart'; 
 import 'package:provider/provider.dart';
 import 'package:job_endear/Models/user.dart';
+import 'firebase_options.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
