@@ -19,7 +19,8 @@ class DatabaseService {
       'email': userData.email,
       'firstName': userData.firstName,
       'lastName': userData.lastName,
-      'role': userData.role,
+      'client': userData.client,
+      'freelancer': userData.freelancer,
       'profileImageUrl': userData.profileImageUrl,
     });
   }
@@ -50,7 +51,8 @@ class DatabaseService {
         email: snap.get('email'),
         firstName: snap.get('firstName'),
         lastName: snap.get('lastName'),
-        role: snap.get('role'),
+        client: snap.get('client'),
+        freelancer: snap.get('freelancer'),
         profileImageUrl: snap.get('profileImageUrl'),
       );
     });

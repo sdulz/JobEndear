@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 
 
-class AuthService {
+class AuthService extends ChangeNotifier{
    
    final auth.FirebaseAuth _auth= auth.FirebaseAuth.instance;
-   
+   bool loading = false;
 
    //create user obj based on FirebaseUser
     User? _userFromFirebaseUser(auth.User? user) {
@@ -21,28 +21,39 @@ class AuthService {
 
   //auth change user stream
   Stream<User?> get user{
+    loading = true;
+    notifyListeners();
     return _auth.authStateChanges()
     .map(_userFromFirebaseUser);
+
   }
   
   // sign in with email & password
  Future <User?> signInWithEmailAndPassword(String email, String password) async {
+    
     try {
+      debugPrint("1st line");
       auth.UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
       auth.User? user = result.user;
+      loading = true;
+      notifyListeners();
       return user != null ? _userFromFirebaseUser(user) : null;
     } catch (error) {
       print(error.toString());
       return null;
+      
     }
   }
 
 
    // Register with email and password
    Future registerWithEmailAndPassword(String email, String password) async {
+    
     try {
       auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       auth.User? user = result.user;
+      loading = true;
+      notifyListeners();
       // create a new document for the user with the uid
       await DatabaseService(uid: user!.uid);
       return _userFromFirebaseUser(user);

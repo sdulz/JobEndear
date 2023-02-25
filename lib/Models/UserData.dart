@@ -3,7 +3,8 @@ class UserData {
   final String email;
   final String firstName;
   final String lastName;
-  final String role;
+  final Client client;
+  final Freelancer freelancer;
   final String profileImageUrl;
 
   UserData({
@@ -11,7 +12,8 @@ class UserData {
     required this.email,
     required this.firstName,
     required this.lastName,
-    required this.role,
+    required this.client,
+    required this.freelancer,
     required this.profileImageUrl,
   });
 }
