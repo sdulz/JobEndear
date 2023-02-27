@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:job_endear/Models/user.dart';
 import 'package:job_endear/Services/database.dart';
-import 'package:job_endear/Models/UserData.dart';
 import 'package:flutter/material.dart';
+
 
 
 
@@ -46,22 +46,57 @@ class AuthService extends ChangeNotifier{
   }
 
 
-   // Register with email and password
-   Future registerWithEmailAndPassword(String email, String password) async {
-    
-    try {
-      auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      auth.User? user = result.user;
-      loading = true;
-      notifyListeners();
-      // create a new document for the user with the uid
-      await DatabaseService(uid: user!.uid);
-      return _userFromFirebaseUser(user);
-    } catch (error) {
-      print(error.toString());
-      return null;
-    } 
+   // Register with Client
+    Future<User?> registerClient(String email, String password, String firstName, String lastName,String ? role, String ? companyName, String? companyAddress) async {
+  try {
+    auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    auth.User? user = result.user;
+    loading = true;
+    notifyListeners();
+
+    // Create a new document for the user with the uid
+    final DatabaseService databaseService = DatabaseService(uid: user!.uid);
+    databaseService.addClientData(
+      email: email,
+      firstName: "Sardul",
+      lastName: "Bhandari",
+      role: 'Client',
+      companyName:'ABC',
+      companyAddress: 'Sukedhara',
+    ); 
+    debugPrint('Client');
+    return _userFromFirebaseUser(user);
+  } catch (error) {
+    print(error.toString());
+    return null;
   }
+}
+
+//Register With Freelancer
+ Future<User?> registerFreelancer(String email, String password, String firstName, String lastName, String ? role,String ? freelancerTitle, String? freelancerDescription) async {
+  try {
+    auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    auth.User? user = result.user;
+    loading = true;
+    notifyListeners();
+
+    // Create a new document for the user with the uid
+    final DatabaseService databaseService = DatabaseService(uid: user!.uid);
+    databaseService.addFreelancerData(
+      email: email,
+      firstName: "Sardul",
+      lastName: "Bhandari",
+      role: 'Client',
+      freelancerTitle:'App Developer',
+      freelancerDescription: 'Does App development',
+    );
+    debugPrint('Freelancer');
+    return _userFromFirebaseUser(user);
+  } catch (error) {
+    print(error.toString());
+    return null;
+  }
+}
 
 
   // sign out

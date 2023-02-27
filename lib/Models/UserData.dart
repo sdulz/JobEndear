@@ -1,20 +1,24 @@
+import 'package:job_endear/Models/job.dart';
+
 class UserData {
   final String uid;
   final String email;
   final String firstName;
   final String lastName;
-  final Client client;
-  final Freelancer freelancer;
-  final String profileImageUrl;
+  final String? role;
+  final Client? client;
+  final Freelancer? freelancer;
+  
 
   UserData({
     required this.uid,
     required this.email,
     required this.firstName,
     required this.lastName,
-    required this.client,
-    required this.freelancer,
-    required this.profileImageUrl,
+    this.role,
+    this.client,
+    this.freelancer,
+
   });
 }
 
@@ -22,13 +26,13 @@ class Client {
   final String uid;
   final String companyName;
   final String companyAddress;
-  final List<String> projectIds;
+  final List  <Project> projectId;
 
   Client({
     required this.uid,
     required this.companyName,
     required this.companyAddress,
-    required this.projectIds,
+    required this.projectId,
   });
 }
 
@@ -36,14 +40,14 @@ class Freelancer {
   final String uid;
   final String title;
   final String description;
-  final List<String> skillIds;
-  final List<String> projectIds;
+  // final List<String> skillIds;
+  final List<Project> projectId;
 
   Freelancer({
     required this.uid,
     required this.title,
     required this.description,
-    required this.skillIds,
-    required this.projectIds,
+    // required this.skillIds,
+    required this.projectId,
   });
 }

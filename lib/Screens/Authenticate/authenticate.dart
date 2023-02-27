@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:job_endear/Screens/Authenticate/register.dart';
 import 'package:job_endear/Screens/Authenticate/sign_in.dart';
 
-class authenticate extends StatefulWidget {
+class Authenticate extends StatefulWidget {
 
   @override
-  State<authenticate> createState() => _authenticateState();
+  State<Authenticate> createState() => _authenticateState();
 }
 
-class _authenticateState extends State<authenticate> {
+class _authenticateState extends State<Authenticate> {
   
     bool showSignIn = true;
-    toggleView(){
+     void toggleView(){
       setState(() {
         showSignIn=!showSignIn;
       });

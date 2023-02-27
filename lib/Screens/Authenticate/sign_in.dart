@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:job_endear/Screens/Home/home.dart';
 import 'package:job_endear/Services/auth.dart';
+import 'package:job_endear/shared/loading.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -23,7 +25,7 @@ String password='';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading? Loading():Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -94,9 +96,14 @@ String password='';
                               TextStyle(color: Colors.white))),
                       onPressed: () async {
                         if(_formKey.currentState!.validate()){
+                          setState(() => loading = true);
                           dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+                          Navigator.of(context).push(MaterialPageRoute(builder:((context) => Home()) ));
                          if (result == null) {
-                          setState(() => error = 'Could Not Sign In With Email and Password');
+                           setState(() {
+                             loading = false;
+                             error = 'Could not sign in with those credentials';
+                        });
                           } 
                         }  
                       },

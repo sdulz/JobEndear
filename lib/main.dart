@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:job_endear/Screens/wrapper.dart';
 import 'package:job_endear/Services/auth.dart'; 
 import 'package:provider/provider.dart';
-
 import 'firebase_options.dart';
 
 
