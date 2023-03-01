@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:job_endear/Models/job.dart';
 import 'package:job_endear/Services/job_post.dart';
+import 'package:job_endear/shared/loading.dart';
 
 
 
@@ -12,19 +15,23 @@ class ProjectFormView extends StatefulWidget {
 
 class _ProjectFormViewState extends State<ProjectFormView> {
   final _formKey = GlobalKey<FormState>();
-
   final _projectpost = Projectpost();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final String _clientId = FirebaseAuth.instance.currentUser!.uid;
+   bool loading = false;
 
-  late String _title;
-  late String _description;
-  late String _jobField;
-  late String _category;
-  late String _location;
-  late double _budget;
-  late DateTime _deadline;
-  late String _requirements;
-  late String _skills;
-  late String _experience;
+
+
+  String ? _title;
+  String ? _description;
+  String ? _projectField;
+  String ? _category;
+  String ? _location;
+  double ? _budget;
+  DateTime? _deadline;
+  String? _requirements;
+  String? _skills;
+  String ?_experience;
   
  
 
@@ -74,8 +81,8 @@ class _ProjectFormViewState extends State<ProjectFormView> {
               ),
               //JobField
               TextFormField(
-                decoration: InputDecoration(labelText: 'Job Field'),
-                initialValue: _jobField,
+                decoration: InputDecoration(labelText: 'Project Field'),
+                initialValue: _projectField,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some experience';
@@ -84,7 +91,7 @@ class _ProjectFormViewState extends State<ProjectFormView> {
                 },
                 onSaved: (value) {
                   setState(() {
-                    _jobField = value!;
+                    _projectField = value!;
                   });
                 },
               ),
@@ -197,10 +204,13 @@ class _ProjectFormViewState extends State<ProjectFormView> {
              
               SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     // TODO: Add logic to save the form data to Firebase
+                    setState(() => loading = true);
+                    final Project project = Project(title: _title, description: _description, projectField: _projectField, category: _category, location: _location, budget: _budget, deadline: _deadline, clientId: _clientId, status: null, requirements: _requirements, skills: _skills, experience: _experience, createdAt: DateTime.now());
+                     await _projectpost.postProject(project) ;
                   }
                 },
                 child: Text('Submit'),

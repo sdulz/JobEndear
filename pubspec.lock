@@ -156,6 +156,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  google_ml_nlp:
+    dependency: "direct main"
+    description:
+      name: google_ml_nlp
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   http_parser:
     dependency: transitive
     description:

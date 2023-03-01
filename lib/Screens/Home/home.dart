@@ -1,8 +1,6 @@
 import'package:flutter/material.dart';
-import 'package:job_endear/Screens/Authenticate/sign_in.dart';
 import 'package:job_endear/Screens/JobPost/job_form.dart';
 import 'package:job_endear/Screens/authenticate/authenticate.dart';
-import 'package:job_endear/Screens/authenticate/sign_in.dart';
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/Services/job_post.dart';
 

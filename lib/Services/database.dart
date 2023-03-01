@@ -1,16 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 final FirebaseFirestore _db = FirebaseFirestore.instance;
 
 class DatabaseService {
-  final String uid;
+ 
 
-  DatabaseService({required this.uid});
 
 
   // collection references
+  CollectionReference _usersCollection = _db.collection('users');
   
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+ 
+ 
+
   void addClientData({
         required String email,
         required String firstName,
@@ -25,7 +33,7 @@ class DatabaseService {
     try{
       CollectionReference _usersCollection = _db.collection('users');
       debugPrint(_usersCollection.toString());
-      _usersCollection.doc(uid).set({
+      _usersCollection.add({
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
@@ -33,7 +41,7 @@ class DatabaseService {
         'companyName': companyName,
         'companyAddress': companyAddress,
         'projectIds': projectId,
-      });
+      }).then((DocumentReference ref ) => ref.update({'userId':ref.id}) );
     }
     catch(e){
       debugPrint(e.toString());

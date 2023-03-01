@@ -55,7 +55,7 @@ class AuthService extends ChangeNotifier{
     notifyListeners();
 
     // Create a new document for the user with the uid
-    final DatabaseService databaseService = DatabaseService(uid: user!.uid);
+    final DatabaseService databaseService = DatabaseService();
     databaseService.addClientData(
       email: email,
       firstName: "Sardul",
@@ -81,7 +81,7 @@ class AuthService extends ChangeNotifier{
     notifyListeners();
 
     // Create a new document for the user with the uid
-    final DatabaseService databaseService = DatabaseService(uid: user!.uid);
+    final DatabaseService databaseService = DatabaseService();
     databaseService.addFreelancerData(
       email: email,
       firstName: "Sardul",

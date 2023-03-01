@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:job_endear/Models/job.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -6,14 +7,14 @@ class Projectpost {
   final CollectionReference _projectCollection =
       FirebaseFirestore.instance.collection('jobs');
 
-  Future<void> postJob(Project project) async {
+  Future<void> postProject(Project project) async {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       throw Exception('User not signed in');
     }
 
     try {
-      await _projectCollection.doc(project.id).set({
+      await _projectCollection.add({
         'title': project.title,
         'description': project.description,
         'jobField': project.projectField,
@@ -28,7 +29,8 @@ class Projectpost {
         'experience': project.experience,
         'createdAt': DateTime.now(),
         
-      }, SetOptions(merge: true));
+      },).then((DocumentReference ref ) => ref.update({'projectId':ref.id}) );
+      debugPrint("sucessfull");
     } catch (e) {
       throw Exception('Failed to post project: $e');
     }
@@ -38,7 +40,7 @@ class Projectpost {
     return _projectCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         return Project(
-          id: doc.id,
+         
           title: doc['title'],
           description: doc['description'],
           projectField: doc['projectField'],
