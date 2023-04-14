@@ -29,5 +29,3 @@ class _authenticateState extends State<Authenticate> {
     }
 
   }
-
-

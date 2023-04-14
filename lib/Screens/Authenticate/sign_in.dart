@@ -94,20 +94,23 @@ String password='';
                               MaterialStateProperty.all(Colors.pink[400]),
                           textStyle: MaterialStateProperty.all(
                               TextStyle(color: Colors.white))),
-                      onPressed: () async {
-                        if(_formKey.currentState!.validate()){
-                          setState(() => loading = true);
-                          dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                          Navigator.of(context).push(MaterialPageRoute(builder:((context) => Home()) ));
-                         if (result == null) {
-                           setState(() {
-                             loading = false;
-                             error = 'Could not sign in with those credentials';
-                        });
-                          } 
-                        }  
-                      },
-                ),
+                     onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() => loading = true);
+                          dynamic result =
+                          await _auth.signInWithEmailAndPassword(email, password);
+                          if (result == null) {
+                            setState(() {
+                              loading = false;
+                              error = 'Could not sign in with those credentials';
+                            });
+                          } else {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: ((context) => Home())));
+                              }
+                            }
+                          },
+                    ),
               SizedBox(height: 12.0),
                 Text(
                   error,

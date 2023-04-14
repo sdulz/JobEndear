@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_endear/Screens/Authenticate/sign_in.dart';
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/shared/loading.dart';
 
@@ -303,6 +304,7 @@ class _RegisterState extends State<Register> {
                         });
                       } else {
                         Navigator.pop(context);
+                         Navigator.pushNamed(context, 'signIn');
                       }
                     }
                   },

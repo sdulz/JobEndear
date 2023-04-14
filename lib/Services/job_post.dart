@@ -21,9 +21,9 @@ class Projectpost {
         'category': project.category,
         'location': project.location,
         'budget': project.budget,
-        'deadline': project.deadline,
+        // 'deadline': project.deadline,
         'clientId': user.uid,
-        'status': project.status,
+        // 'status': project.status,
         'requirements': project.requirements,
         'skills': project.skills,
         'experience': project.experience,
@@ -47,9 +47,9 @@ class Projectpost {
           category: doc['category'],
           location: doc['location'],
           budget: doc['budget'].toDouble(),
-          deadline: doc['deadline'].toDate(),
+          // deadline: doc['deadline'].toDate(),
           clientId: doc['clientId'],
-          status: doc['status'],
+          // status: doc['status'],
           requirements: doc['requirements'],
           skills: doc['skills'],
           experience: doc['experience'],
@@ -59,3 +59,4 @@ class Projectpost {
     });
   }
 }
+

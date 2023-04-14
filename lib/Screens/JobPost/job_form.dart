@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:job_endear/Models/job.dart';
+import 'package:job_endear/Screens/JobList/joblist.dart';
 import 'package:job_endear/Services/job_post.dart';
 import 'package:job_endear/shared/loading.dart';
 
@@ -22,16 +23,15 @@ class _ProjectFormViewState extends State<ProjectFormView> {
 
 
 
-  String ? _title;
-  String ? _description;
-  String ? _projectField;
-  String ? _category;
-  String ? _location;
-  double ? _budget;
-  DateTime? _deadline;
-  String? _requirements;
-  String? _skills;
-  String ?_experience;
+  late String _title = '';
+  late String  _description='';
+  late String  _projectField='';
+  late String  _category='';
+  late String  _location='';
+  late double  _budget;
+  late String _requirements='';
+  late String _skills='';
+  late String _experience='';
   
  
 
@@ -209,10 +209,15 @@ class _ProjectFormViewState extends State<ProjectFormView> {
                     _formKey.currentState!.save();
                     // TODO: Add logic to save the form data to Firebase
                     setState(() => loading = true);
-                    final Project project = Project(title: _title, description: _description, projectField: _projectField, category: _category, location: _location, budget: _budget, deadline: _deadline, clientId: _clientId, status: null, requirements: _requirements, skills: _skills, experience: _experience, createdAt: DateTime.now());
+                    final Project project = Project(title: _title, description: _description, projectField: _projectField, category: _category, location: _location, budget: _budget, clientId: _clientId, requirements: _requirements, skills: _skills, experience: _experience, createdAt: DateTime.now());
                      await _projectpost.postProject(project) ;
+
                   }
-                },
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProjectList()),
+                    );
+                  },
                 child: Text('Submit'),
               ),
             ],
