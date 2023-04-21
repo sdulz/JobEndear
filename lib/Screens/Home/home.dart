@@ -1,8 +1,8 @@
 import'package:flutter/material.dart';
-import 'package:job_endear/Screens/JobPost/job_form.dart';
+import 'package:job_endear/Screens/ProjectPost/project_form.dart';
 import 'package:job_endear/Screens/authenticate/authenticate.dart';
 import 'package:job_endear/Services/auth.dart';
-import 'package:job_endear/Services/job_post.dart';
+import 'package:job_endear/Services/project_post.dart';
 
 class Home extends StatelessWidget {
 

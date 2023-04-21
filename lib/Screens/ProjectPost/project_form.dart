@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:job_endear/Models/job.dart';
-import 'package:job_endear/Screens/JobList/joblist.dart';
-import 'package:job_endear/Services/job_post.dart';
+import 'package:job_endear/Models/project.dart';
+import 'package:job_endear/Screens/ProjectList/projectlist.dart';
+import 'package:job_endear/Services/project_post.dart';
 import 'package:job_endear/shared/loading.dart';
 
 
@@ -22,7 +22,7 @@ class _ProjectFormViewState extends State<ProjectFormView> {
    bool loading = false;
 
 
-
+  late String _pid = '';
   late String _title = '';
   late String  _description='';
   late String  _projectField='';
@@ -209,7 +209,7 @@ class _ProjectFormViewState extends State<ProjectFormView> {
                     _formKey.currentState!.save();
                     // TODO: Add logic to save the form data to Firebase
                     setState(() => loading = true);
-                    final Project project = Project(title: _title, description: _description, projectField: _projectField, category: _category, location: _location, budget: _budget, clientId: _clientId, requirements: _requirements, skills: _skills, experience: _experience, createdAt: DateTime.now());
+                    final Project project = Project(projectId:_pid,title: _title, description: _description, projectField: _projectField, category: _category, location: _location, budget: _budget, clientId: _clientId, requirements: _requirements, skills: _skills, experience: _experience, createdAt: DateTime.now());
                      await _projectpost.postProject(project) ;
 
                   }

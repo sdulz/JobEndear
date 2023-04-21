@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:job_endear/Models/job.dart';
+import 'package:job_endear/Models/project.dart';
+import 'package:job_endear/Screens/Project_detail/project_detail.dart';
 
 class ProjectList extends StatelessWidget {
   const ProjectList({Key? key}) : super(key: key);
@@ -34,6 +35,10 @@ class ProjectList extends StatelessWidget {
                   trailing: Text('\$${project.budget.toStringAsFixed(2)}'),
                   onTap: () {
                     // navigate to project details page
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProjectDetailsPage(project: project,)),
+                    );
                   },
                 );
               },

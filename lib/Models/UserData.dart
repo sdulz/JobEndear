@@ -1,4 +1,4 @@
-import 'package:job_endear/Models/job.dart';
+import 'package:job_endear/Models/project.dart';
 
 class UserData {
   final String uid;

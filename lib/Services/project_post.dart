@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:job_endear/Models/job.dart';
+import 'package:job_endear/Models/project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Projectpost {
@@ -40,7 +40,7 @@ class Projectpost {
     return _projectCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         return Project(
-         
+          projectId: doc['projectId'],
           title: doc['title'],
           description: doc['description'],
           projectField: doc['projectField'],

@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import'package:flutter/material.dart';
 import 'package:job_endear/Screens/Authenticate/authenticate.dart';
-import 'package:job_endear/Screens/JobList/joblist.dart';
+import 'package:job_endear/Screens/CV/cv_freelancer.dart';
+
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/Screens/Home/home.dart';
 import 'package:provider/provider.dart';

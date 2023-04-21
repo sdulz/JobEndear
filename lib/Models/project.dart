@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Project {
+  late String projectId;
   late String title;
   late String description;
   late String projectField;
@@ -17,6 +18,7 @@ class Project {
   late DateTime createdAt;
 
   Project({
+    required this.projectId,
     required this.title,
     required this.description,
     required this.projectField,
@@ -35,6 +37,7 @@ class Project {
   factory Project.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data() as Map<String, dynamic>;
     return Project(
+      projectId:data['projectId']??'',
       title: data['title'] ?? '',
       description: data['description'] ?? '',
       projectField: data['projectField'] ?? '',
@@ -51,6 +54,7 @@ class Project {
 
   Map<String, dynamic> toFirestore() {
     return {
+      'pid':'pid',
       'title': title,
       'description': description,
       'projectField': projectField,

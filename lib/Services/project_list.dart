@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:job_endear/Models/job.dart';
+import 'package:job_endear/Models/project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Projectpost {
