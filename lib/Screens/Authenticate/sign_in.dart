@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:job_endear/Models/UserData.dart';
 import 'package:job_endear/Screens/Home/home.dart';
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/shared/loading.dart';
@@ -15,16 +18,24 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
  final AuthService _auth = AuthService();
+ final useruid = FirebaseAuth.instance.currentUser?.uid;
+  
+  
   final _formKey = GlobalKey<FormState>();
   String error = '';
   bool loading = false;
-
+  List <Role> role = [];
 //text field state
 String email='';
 String password='';
-
+Future <void> getrole() async{
+    await FirebaseFirestore.instance.collection('users').where("uid",isEqualTo: useruid).get().then((value){
+        role = value.docs.map((e) => Role.fromJson(e.data())).toList();
+      });
+}
   @override
   Widget build(BuildContext context) {
+    getrole();
     return loading? Loading():Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
@@ -68,6 +79,7 @@ String password='';
               ),
               
               SizedBox(height: 20.0),
+              
               TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(

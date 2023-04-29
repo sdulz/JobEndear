@@ -45,6 +45,11 @@ dependencies:
   google_ml_nlp: ^0.0.1
   firebase_storage: ^11.1.1
   file_picker: ^5.2.10
+  quiver: ^3.2.1
+  html: ^0.15.0
+  path_provider_tizen: ^2.1.0
+  path_provider: ^2.0.14
+  
  
   
   

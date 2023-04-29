@@ -60,7 +60,7 @@ class AuthService extends ChangeNotifier{
       email: email,
       firstName: firstName,
       lastName:lastName,
-      role: role ,
+      role: "Client" ,
       companyName:companyName,
       companyAddress:companyAddress ,
     ); 
@@ -73,7 +73,7 @@ class AuthService extends ChangeNotifier{
 }
 
 //Register With Freelancer
- Future<User?> registerFreelancer(String email, String password, String? firstName, String? lastName, String ? role,String ? freelancerTitle, String? freelancerDescription) async {
+ Future<User?> registerFreelancer(String email, String password, String firstName, String lastName, String ? role,String ? freelancerTitle, String? freelancerDescription) async {
   try {
     auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     auth.User? user = result.user;
@@ -84,11 +84,11 @@ class AuthService extends ChangeNotifier{
     final DatabaseService databaseService = DatabaseService();
     databaseService.addFreelancerData(
       email: email,
-      firstName: "",
-      lastName:"",
-      role:"",
-      freelancerTitle:"",
-      freelancerDescription: "",
+      firstName: firstName,
+      lastName:lastName,
+      role:"Freelancer",
+      freelancerTitle:freelancerTitle,
+      freelancerDescription: freelancerDescription,
     );
     debugPrint('Freelancer');
     return _userFromFirebaseUser(user);
