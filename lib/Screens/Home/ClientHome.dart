@@ -1,46 +1,48 @@
-// import 'package:flutter/material.dart';
-// import 'package:job_endear/Screens/JobPost/job_form.dart';
-// import 'package:job_endear/Services/auth.dart';
-// import 'package:job_endear/Services/job_post.dart';
+import 'package:flutter/material.dart';
 
-// class ClientHome extends StatelessWidget {
-//   final Projectpost _projectController = Projectpost();
-//   final AuthService _auth = AuthService();
+import 'package:job_endear/Screens/ProjectPost/project_form.dart';
+import 'package:job_endear/Services/auth.dart';
+import 'package:job_endear/Services/project_list.dart';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Job Endear - Client'),
-//         actions: <Widget>[
-//           ElevatedButton.icon(
-//             onPressed: () async {
-//               await _auth.signOut();
-//               Navigator.of(context).pushReplacementNamed('/authenticate');
-//             },
-//             icon: Icon(Icons.person),
-//             label: Text('Logout'),
-//           ),
-//         ],
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text('Post Project', style: TextStyle(fontSize: 24)),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               child: Text('Create Project'),
-//               onPressed: () {
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(builder: (context) => ProjectFormView()),
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+
+class ClientHome extends StatelessWidget {
+  final Projectpost _projectController = Projectpost();
+  final AuthService _auth = AuthService();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Job Endear - Client'),
+        actions: <Widget>[
+          ElevatedButton.icon(
+            onPressed: () async {
+              await _auth.signOut();
+              Navigator.of(context).pushReplacementNamed('/authenticate');
+            },
+            icon: Icon(Icons.person),
+            label: Text('Logout'),
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Post Project', style: TextStyle(fontSize: 24)),
+            SizedBox(height: 20),
+            ElevatedButton(
+              child: Text('Create Project'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProjectFormView()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -29,22 +29,22 @@ class Role {
   late String email;
   late String firstName;
   late String lastName;
-  late String? role;
+  late String role;
 
   Role({
     required this.uid,
     required this.email,
     required this.firstName,
     required this.lastName,
-    this.role,
+    required this.role,
   });
 
   Role.fromJson(Map<String, dynamic> map) {
-    uid = map['uid'];
-    email = map['email'];
-    firstName = map['firstName'];
-    lastName = map['lastName'];
-    role = map['role'];
+    uid = map['uid'].toString();
+    email = map['email'].toString();
+    firstName = map['firstName'].toString();
+    lastName = map['lastName'].toString();
+    role = map['role'].toString();
   }
 
   Map<String, dynamic> toJson() {

@@ -49,6 +49,11 @@ dependencies:
   html: ^0.15.0
   path_provider_tizen: ^2.1.0
   path_provider: ^2.0.14
+  curved_navigation_bar: ^1.0.3 
+  fluttertoast: ^8.0.7
+  url_launcher: ^6.1.10
+  adobe_xd: ^2.0.1
+  get: ^4.6.5
   
  
   

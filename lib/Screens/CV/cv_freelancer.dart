@@ -14,6 +14,7 @@ class UploadCvPage extends StatefulWidget {
 }
 
 class _UploadCvPageState extends State<UploadCvPage> {
+  int index = 6;
   File? _selectedFile;
   bool _isUploading = false;
   String? _uploadUrl;
@@ -60,14 +61,18 @@ class _UploadCvPageState extends State<UploadCvPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: _selectFile,
-              child: Text('Select File'),
+              icon: Icon(Icons.attach_file),
+              label: Text('Select File'),
             ),
             SizedBox(height: 16),
-            if (_selectedFile != null)
+            if (_selectedFile != null) ...[
               Text('Selected file: ${_selectedFile!.path}'),
+              //Text('Size: ${(await _selectedFile!.length()) ~/ 1024} KB'),
+            ],
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: _uploadFile,

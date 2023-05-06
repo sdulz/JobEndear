@@ -14,14 +14,16 @@
 
 //   // Loop through each sentence to count the frequency of each word
 //   for (String sentence in sentences) {
-//     List<String> words = sentence.split(' ');
-//     for (String word in words) {
-//       if (wordFreq.containsKey(word)) {
-//         wordFreq[word]++;
-//       } else {
-//         wordFreq[word] = 1;
-//       }
+//   List<String> words = sentence.split(' ');
+//   for (String word in words) {
+//     if (wordFreq.containsKey(word)) {
+//       wordFreq[word] = wordFreq[word]! + 1;
+//     } else {
+//       wordFreq[word] = 1;
 //     }
+//   }
+// }
+
 //     // Mark the words that appeared in the current sentence
 //     Set<String> distinctWords = words.toSet();
 //     for (String word in distinctWords) {

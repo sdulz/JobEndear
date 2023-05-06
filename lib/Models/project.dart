@@ -5,7 +5,7 @@ class Project {
   late String projectId;
   late String title;
   late String description;
-  late String projectField;
+  // late String projectField;
   late String category;
   late String location;
   late double budget;
@@ -21,7 +21,7 @@ class Project {
     required this.projectId,
     required this.title,
     required this.description,
-    required this.projectField,
+    // required this.projectField,
     required this.category,
     required this.location,
     required this.budget,
@@ -40,7 +40,7 @@ class Project {
       projectId:data['projectId']??'',
       title: data['title'] ?? '',
       description: data['description'] ?? '',
-      projectField: data['projectField'] ?? '',
+      // projectField: data['projectField'] ?? '',
       category: data['category'] ?? '',
       location: data['location'] ?? '',
       budget: (data['budget'] ?? 0).toDouble(),
@@ -57,7 +57,7 @@ class Project {
       'pid':'pid',
       'title': title,
       'description': description,
-      'projectField': projectField,
+      // 'projectField': projectField,
       'category': category,
       'location': location,
       'budget': budget,

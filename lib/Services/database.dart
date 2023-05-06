@@ -23,10 +23,12 @@ class DatabaseService {
         required String email,
         required String firstName,
         required String lastName,
+        String ? uid,
         String? role,
         String? companyName,
         String? companyAddress,
         String? projectId,
+        
       })
   {
     try{
@@ -40,7 +42,7 @@ class DatabaseService {
         'companyName': companyName,
         'companyAddress': companyAddress,
         'projectIds': projectId,
-      }).then((DocumentReference ref ) => ref.update({'userId':ref.id}) );
+      }).then((DocumentReference ref ) => ref.update({'userId':uid}) );
     }
     catch(e){
       debugPrint(e.toString());
@@ -52,6 +54,7 @@ class DatabaseService {
         required String email,
         required String firstName,
         required String lastName,
+        String ? uid,
         String? role,
         String? freelancerTitle,
         String? freelancerDescription,
@@ -61,7 +64,7 @@ class DatabaseService {
     try{
       CollectionReference _usersCollection = _db.collection('users');
       debugPrint(_usersCollection.toString());
-      _usersCollection.doc(uid).set({
+      _usersCollection.add({
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
@@ -69,7 +72,7 @@ class DatabaseService {
         'companyName': freelancerTitle,
         'companyAddress': freelancerDescription,
         'projectIds': projectId,
-      });
+      }).then((DocumentReference ref ) => ref.update({'userId':uid}) );
     }
     catch(e){
       debugPrint(e.toString());

@@ -51,6 +51,7 @@ class AuthService extends ChangeNotifier{
   try {
     auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     auth.User? user = result.user;
+    String ? uid = user?.uid;
     loading = true;
     notifyListeners();
 
@@ -63,6 +64,8 @@ class AuthService extends ChangeNotifier{
       role: "Client" ,
       companyName:companyName,
       companyAddress:companyAddress ,
+      uid: uid,
+
     ); 
     debugPrint('Client');
     return _userFromFirebaseUser(user);
@@ -77,6 +80,7 @@ class AuthService extends ChangeNotifier{
   try {
     auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     auth.User? user = result.user;
+    String ? uid = user?.uid;
     loading = true;
     notifyListeners();
 
@@ -89,6 +93,7 @@ class AuthService extends ChangeNotifier{
       role:"Freelancer",
       freelancerTitle:freelancerTitle,
       freelancerDescription: freelancerDescription,
+      uid: uid,
     );
     debugPrint('Freelancer');
     return _userFromFirebaseUser(user);

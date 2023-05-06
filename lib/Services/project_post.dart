@@ -17,7 +17,7 @@ class Projectpost {
       await _projectCollection.add({
         'title': project.title,
         'description': project.description,
-        'jobField': project.projectField,
+        // 'jobField': project.projectField,
         'category': project.category,
         'location': project.location,
         'budget': project.budget,
@@ -43,7 +43,7 @@ class Projectpost {
           projectId: doc['projectId'],
           title: doc['title'],
           description: doc['description'],
-          projectField: doc['projectField'],
+          // projectField: doc['projectField'],
           category: doc['category'],
           location: doc['location'],
           budget: doc['budget'].toDouble(),
