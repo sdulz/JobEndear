@@ -30,6 +30,7 @@ class Role {
   late String firstName;
   late String lastName;
   late String role;
+  late String projectId;
 
   Role({
     required this.uid,
@@ -37,6 +38,7 @@ class Role {
     required this.firstName,
     required this.lastName,
     required this.role,
+    required this.projectId,
   });
 
   Role.fromJson(Map<String, dynamic> map) {
@@ -44,7 +46,8 @@ class Role {
     email = map['email'].toString();
     firstName = map['firstName'].toString();
     lastName = map['lastName'].toString();
-    role = map['role'].toString();
+    role = map['role'].toString();  
+     projectId = map['projectId'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -74,17 +77,20 @@ class Client {
 }
 
 class Freelancer {
-  final String freelancerId;
-  final String category;
-  final String skills;
-  final String experience;
-  final DateTime createdAt;
+  late String freelancerId;
+  late String category;
+  late String skills;
+  late String experience;
+  late String? freelancerTitle;
+  
+  late DateTime createdAt;
 
   Freelancer({
     required this.freelancerId,
     required this.category,
     required this.skills,
     required this.experience,
+    this.freelancerTitle,
     required this.createdAt,
   });
 
@@ -94,6 +100,7 @@ class Freelancer {
       'category': category,
       'skills': skills,
       'experience': experience,
+      // 'freelancerTitle':freelancerTitle,
       'createdAt': createdAt,
     };
   }
@@ -103,7 +110,16 @@ class Freelancer {
       category: map['category'],
       skills: map['skills'],
       experience: map['experience'],
+      freelancerTitle: map['freelancerTitle'],
       createdAt: map['createdAt'].toDate(),
     );
   }
+Freelancer.fromJson(Map<String, dynamic> map) {
+     freelancerId = map['freelancerId'].toString();
+      category = map['category'].toString();
+      skills = map['skills'].toString();
+      experience = map['experience'].toString();
+      createdAt = map['createdAt'].toDate();
+  
+}
 }

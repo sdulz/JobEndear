@@ -51,9 +51,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:job_endear/Models/UserData.dart';
+import 'package:job_endear/Models/project.dart';
 import 'package:job_endear/Screens/Authenticate/authenticate.dart';
 import 'package:job_endear/Screens/Home/home.dart';
 import 'package:job_endear/Screens/ProjectList/projectlist.dart';
+import 'package:job_endear/Screens/Project_detail/applicant_list.dart';
+import 'package:job_endear/Screens/freelancer_profile.dart/f_profile_form.dart';
+import 'package:job_endear/Screens/freelancer_profile.dart/profile_post.dart';
+import 'package:job_endear/Screens/recommendation.dart';
+import 'package:job_endear/Services/Algorithm/textrank.dart';
 
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/Services/role_controller.dart';
@@ -83,10 +89,10 @@ class Wrapper extends StatelessWidget {
             var role = value.roledata[0].role;
 
             if (role== "Freelancer"){
-              return Jobscreen();
+              return RecommendationView();
             }
             else{
-              return Home();
+              return RecommendationView();
             }
           }
           else{

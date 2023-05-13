@@ -134,28 +134,28 @@ class _FreelancerProfilePostViewState extends State<FreelancerProfilePostView> {
                       return null;
                     },
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'CV',
-                      icon: Icon(Icons.category),
-                      hintText: 'Upload your CV',
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => UploadCvPage()),
-                      );
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'select a file';
-                      }
-                      return null;
-                    },
-                  ),
+                  // SizedBox(
+                  //   height: 16,
+                  // ),
+                  // TextFormField(
+                  //   decoration: InputDecoration(
+                  //     labelText: 'CV',
+                  //     icon: Icon(Icons.category),
+                  //     hintText: 'Upload your CV',
+                  //   ),
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (_) => UploadCvPage()),
+                  //     );
+                  //   },
+                  //   validator: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'select a file';
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                   SizedBox(height: 16),
                   MaterialButton(
                     onPressed: () async {

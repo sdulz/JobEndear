@@ -1,30 +1,18 @@
 
 
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart' as dom;
 import 'package:job_endear/Services/Algorithm/graph.dart';
-import 'package:quiver/collection.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_endear/Models/sentence.dart';
-import 'package:path_provider/path_provider.dart';
 
 
 
-class Algorithm extends StatelessWidget {
-  const Algorithm({Key? key}) : super(key: key);
 
-  @override
+class Algorithm  {
   
-  Widget build(BuildContext context) {
         
-        
-          //Extract Sentences
+      //Extract Sentences
       List<String> extractSentences(String description) {
         final sentences = <String>[];
         final text = description.trim();
@@ -111,8 +99,8 @@ class Algorithm extends StatelessWidget {
         }
 
         void test(){
-          String description1="I like software development very very much.";
-          String description2="Software Development is what i like more than anything";
+          String description1="I like software development";
+          String description2="I love software development very very much";
         List<String> s1=extractSentences(description1);
         List<String> s2=extractSentences(description2);
         List<List<String>> tokens1= tokenizeSentences (s1);
@@ -122,26 +110,25 @@ class Algorithm extends StatelessWidget {
         double similarity = sentenceSimilarity (sen1 , sen2);
         var graph = Graph <String> ();
         graph.addEdge(description1,description2, similarity);
-        graph.addEdge(description2, description1, 1);
+        graph.addEdge(description2, description1, similarity);
   
         var pR = graph.pageRank();
         debugPrint(pR.toString());
        
         }
-        test();
-        return Container(child: const Text("Algorithm Page"),);
+       
   }
-}
-//     Future<String> get _localPath async {
-//       final directory = await getApplicationDocumentsDirectory();
 
-//       return directory.path;
-//     }
+    // Future<String> get _localPath async {
+    //   final directory = await getApplicationDocumentsDirectory();
 
-//     Future<File> get _localFile async {
-//       final path = await _localPath;
-//       return File('$path/D:/Flutter Projects/job_endear/Word emb/glove.6B.50d.txt');
-//     }
+    //   return directory.path;
+    // }
+
+    // Future<File> get _localFile async {
+    //   final path = await _localPath;
+    //   return File('$path/D:/Flutter Projects/job_endear/Word emb/glove.6B.50d.txt');
+    // }
 
 // Future<void> generateembeddings() async {
 //   try {

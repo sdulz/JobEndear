@@ -69,8 +69,8 @@ class DatabaseService {
         'firstName': firstName,
         'lastName': lastName,
         'role': role,
-        'companyName': freelancerTitle,
-        'companyAddress': freelancerDescription,
+        'freelancerTitle': freelancerTitle,
+        'freelancerDescription': freelancerDescription,
         'projectIds': projectId,
       }).then((DocumentReference ref ) => ref.update({'userId':uid}) );
     }

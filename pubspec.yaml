@@ -54,6 +54,8 @@ dependencies:
   url_launcher: ^6.1.10
   adobe_xd: ^2.0.1
   get: ^4.6.5
+  http: ^0.13.3
+
   
  
   

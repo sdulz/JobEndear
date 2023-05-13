@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
             Text('Post Project', style: TextStyle(fontSize: 24)),
             SizedBox(height: 20),
             ElevatedButton(
-              child: Text('enter to redirect'),
+              child: Text('Post Now'),
               onPressed: () {
                 Navigator.push(
                   context,

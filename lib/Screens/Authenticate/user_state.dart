@@ -21,7 +21,7 @@
 //                 child:
 //                     Text('an error has ocurreed has ocurred! try again later'),
 //               ),
-//             );
+//             );+
 //           } else if (userSnapShot.connectionState == ConnectionState.waiting) {
 //             return Scaffold(
 //               body: Center(
