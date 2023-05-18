@@ -58,8 +58,10 @@ class RoleController extends GetxController{
                           // debugPrint(applicationData[0].projectId);
                           // debugPrint("iamheereee");
                           for (int i = 0; i<applicationData.length;i++){
-                            getFreelancer(applicationData[i].uid);
+                            getFreelancer(applicationData[i].userId);
+
                           }
+                          debugPrint(applicationData[0].userId);
 
                           isLoading = false;         
                           update();
@@ -80,7 +82,7 @@ class RoleController extends GetxController{
                .then(((value) {
                     
                       freelancerData = value.docs.map((e) => Freelancer.fromJson(e.data())).toList();  
-                      // debugPrint(freelancerData.toString());
+                      debugPrint(freelancerData[0].experience.toString());
                       
                       isLoading = false;
                       update();
@@ -105,7 +107,7 @@ class RoleController extends GetxController{
                   .then(((value) {
                     
                       roledata = value.docs.map((e) => Role.fromJson(e.data())).toList();  
-                      // debugPrint(roledata[0].email);
+                      debugPrint(roledata[0].email);
                        getProject(uid);
                        
                       isLoading = false;

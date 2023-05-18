@@ -3,7 +3,9 @@ import '../Models/project.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+ final FirebaseFirestore _db = FirebaseFirestore.instance;
 class ApplyProjectController {
+   CollectionReference _applications = _db.collection('applications');
   static Future<void> applyForJob(BuildContext context, Project project) async {
     // Show a dialog to confirm that the user wants to apply for the job
     bool shouldApply = await showDialog(
@@ -39,8 +41,6 @@ class ApplyProjectController {
 
       // Add the application to the "applications" subcollection of the job document
       firestore
-          .collection('jobs')
-          .doc(project.projectId)
           .collection('applications')
           .doc(userId)
           .set({

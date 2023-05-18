@@ -11,6 +11,7 @@ import 'package:job_endear/Screens/Home/ClientHome.dart';
 import 'package:job_endear/Screens/ProjectList/projectlist.dart';
 
 import 'package:job_endear/Screens/ProjectPost/project_form.dart';
+import 'package:job_endear/Screens/Project_detail/applicant_list.dart';
 import 'package:job_endear/Screens/Search/profile_company.dart';
 import 'package:job_endear/Screens/Search/search_comapnies.dart';
 import 'package:job_endear/Screens/freelancer_profile.dart/f_profile_form.dart';
@@ -121,8 +122,8 @@ class BottomNavigatorforApp extends StatelessWidget {
           final FirebaseAuth _auth = FirebaseAuth.instance;
           final User? user = _auth.currentUser;
           final String uid = user!.uid;
-          // Navigator.pushReplacement(
-          //     context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => ProjectApplicationsPage()));
         } else if (index == 4) {
           _logout(context);
         }

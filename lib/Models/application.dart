@@ -1,5 +1,5 @@
 class ProjectApplication {
-  late String uid;
+  late String userId;
   // late DateTime appliedAt;
   late String? status;
   // late DateTime? hiredAt;
@@ -7,7 +7,7 @@ class ProjectApplication {
   late String? projectId;
 
   ProjectApplication({
-    required this.uid,
+    required this.userId,
     // required this.appliedAt,
     this.status,
     // this.hiredAt,
@@ -16,7 +16,7 @@ class ProjectApplication {
   });
 
   ProjectApplication.fromJson(Map<String, dynamic> map) {
-    uid = map['uid'].toString();
+    userId = map['userId'].toString();
     // appliedAt = map['appliedAt'].toDate();
     status = map['status'].toString();
     // hiredAt = map['hiredAt'].toDate();

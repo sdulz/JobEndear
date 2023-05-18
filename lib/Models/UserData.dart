@@ -1,13 +1,14 @@
 import 'package:job_endear/Models/project.dart';
 
 class UserData {
-  final String uid;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String? role;
-  final Client? client;
-  final Freelancer? freelancer;
+  late String uid;
+  late String email;
+  late String firstName;
+  late String lastName;
+  late String? role;
+  late Client? client;
+  late Freelancer? freelancer;
+  late String? freelancerTitle;
   
 
   UserData({
@@ -18,10 +19,20 @@ class UserData {
     this.role,
     this.client,
     this.freelancer,
-    
+    this.freelancerTitle,
+
+  
 
   });
-  
+
+   UserData.fromJson(Map<String, dynamic> map) {
+    uid = map['uid'].toString();
+    email = map['email'].toString();
+    firstName = map['firstName'].toString();
+    lastName = map['lastName'].toString();
+    role = map['role'].toString();  
+     freelancerTitle = map['freelancerTitle'].toString();
+   }
   
 }
 class Role {
@@ -100,7 +111,7 @@ class Freelancer {
       'category': category,
       'skills': skills,
       'experience': experience,
-      // 'freelancerTitle':freelancerTitle,
+      'freelancerTitle':freelancerTitle,
       'createdAt': createdAt,
     };
   }
@@ -117,6 +128,7 @@ class Freelancer {
 Freelancer.fromJson(Map<String, dynamic> map) {
      freelancerId = map['freelancerId'].toString();
       category = map['category'].toString();
+      freelancerTitle = map['freelancerTitle'].toString();
       skills = map['skills'].toString();
       experience = map['experience'].toString();
       createdAt = map['createdAt'].toDate();
