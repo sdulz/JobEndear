@@ -55,6 +55,8 @@ dependencies:
   adobe_xd: ^2.0.1
   get: ^4.6.5
   http: ^0.13.3
+  flutter_pdfview: ^1.0.0
+  email_validator: '^2.1.16'
 
   
  

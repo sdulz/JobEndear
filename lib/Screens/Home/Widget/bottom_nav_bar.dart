@@ -127,7 +127,7 @@ class BottomNavigatorforApp extends StatelessWidget {
           ),
         if (role == 'Client')
           const Icon(
-            Icons.person_2_sharp,
+            Icons.person_sharp,
             size: 24,
             color: Colors.black,
           ),
