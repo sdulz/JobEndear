@@ -6,16 +6,17 @@ import 'package:job_endear/Screens/authenticate/authenticate.dart';
 import 'package:job_endear/Services/auth.dart';
 import 'package:job_endear/Services/project_post.dart';
 
-
 class Home extends StatelessWidget {
   final Projectpost _projectController = Projectpost();
   final AuthService _auth = AuthService();
+
+  Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Job Endear'),
+        title: const Text('Job Endear'),
         actions: <Widget>[
           ElevatedButton.icon(
             onPressed: () async {
@@ -23,8 +24,8 @@ class Home extends StatelessWidget {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: ((context) => Authenticate())));
             },
-            icon: Icon(Icons.person),
-            label: Text('Logout'),
+            icon: const Icon(Icons.person),
+            label: const Text('Logout'),
           ),
         ],
       ),
@@ -32,15 +33,15 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Post Project', style: TextStyle(fontSize: 24)),
-            SizedBox(height: 20),
+            const Text('Post Project', style: TextStyle(fontSize: 24)),
+            const SizedBox(height: 20),
             ElevatedButton(
-              child: Text('Post Now'),
+              child: const Text('enter to redirect'),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProjectFormView(),
+                    builder: (context) => const ProjectFormView(),
                   ),
                 );
               },

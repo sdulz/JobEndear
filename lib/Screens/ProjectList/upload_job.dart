@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:job_endear/Screens/Home/Widget/bottom_nav_bar.dart';
 
 import '../ProjectPost/project_form.dart';
 // appBar: AppBar(
@@ -18,20 +17,21 @@ import '../ProjectPost/project_form.dart';
 // ),
 
 class UploadJobNow extends StatelessWidget {
+  const UploadJobNow({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigatorforApp(indexNum: 2),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF6593FF), Color(0xFF0078FF)],
+            colors: [Color(0xFF6600FF), Color(0xFF8C309C)],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            stops: const [0.3, 0.8],
+            stops: [0.3, 0.8],
           ),
         ),
-        child: SafeArea(
+        child: const SafeArea(
           child: ProjectFormView(),
         ),
       ),

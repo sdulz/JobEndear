@@ -6,124 +6,104 @@ import 'package:job_endear/Models/UserData.dart';
 import 'package:job_endear/Models/application.dart';
 import 'package:job_endear/Models/project.dart';
 
-class RoleController extends GetxController{
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    List <Role> roledata = [];
-    List <Project> projectData=[];
-    List <Freelancer> freelancerData=[];
-   
-     List <ProjectApplication> applicationData=[];
-    bool isLoading = true;
-      
-      Future <void> getProject(String clientId) async{
-        try{
-          await _firestore
+class RoleController extends GetxController {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  List<Role> roledata = [];
+  List<Project> projectData = [];
+  List<Freelancer> freelancerData = [];
+
+  List<ProjectApplication> applicationData = [];
+  bool isLoading = true;
+
+  Future<void> getProject(String clientId) async {
+    try {
+      await _firestore
           .collection('jobs')
-          .where('clientId',isEqualTo: clientId)
+          .where('clientId', isEqualTo: clientId)
           .get()
-                      .then(((value) {
-                        
-                          projectData = value.docs.map((e) => Project.fromJson(e.data())).toList();  
-                           debugPrint(projectData[0].description);
+          .then(((value) {
+        projectData =
+            value.docs.map((e) => Project.fromJson(e.data())).toList();
+        debugPrint(projectData[0].description);
 
-                          for( int i = 0 ; i<projectData.length;i++){
-                            getApplication(projectData[i].projectId);
-
-                            
-                          }
-                         
-                          isLoading = false;
-                          update();
-            }));
+        for (int i = 0; i < projectData.length; i++) {
+          getApplication(projectData[i].projectId);
         }
-        
-        catch(e){
-          debugPrint(e.toString()); 
-        }
-      }
 
-      Future <void> getApplication(String projectId) async{
-        try{  
-          await _firestore
+        isLoading = false;
+        update();
+      }));
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getApplication(String projectId) async {
+    try {
+      await _firestore
           .collection('jobs')
           .doc(projectId)
           .collection('applications')
-          .where('projectId',isEqualTo: projectId)
+          .where('projectId', isEqualTo: projectId)
           .get()
-          
-              .then(((value) {
-                        
-                          applicationData = value.docs.map((e) => ProjectApplication.fromJson(e.data())).toList();  
-                          // debugPrint(applicationData[0].projectId);
-                          // debugPrint("iamheereee");
-                          for (int i = 0; i<applicationData.length;i++){
-                            getFreelancer(applicationData[i].userId);
-
-                          }
-                          debugPrint(applicationData[0].userId);
-
-                          isLoading = false;         
-                          update();
-            }));
-
+          .then(((value) {
+        applicationData = value.docs
+            .map((e) => ProjectApplication.fromJson(e.data()))
+            .toList();
+        // debugPrint(applicationData[0].projectId);
+        // debugPrint("iamheereee");
+        for (int i = 0; i < applicationData.length; i++) {
+          getFreelancer(applicationData[i].userId);
         }
-        catch(e){
-          print(e.toString());
-        }
-      }
-  
-  Future<void> getFreelancer(String freelancerId)async{
-    try{
-      await _firestore
-        .collection('freelancers')
-        .where('freelancerId',isEqualTo: freelancerId)
-        .get()
-               .then(((value) {
-                    
-                      freelancerData = value.docs.map((e) => Freelancer.fromJson(e.data())).toList();  
-                      debugPrint(freelancerData[0].experience.toString());
-                      
-                      isLoading = false;
-                      update();
-        }));
+        debugPrint(applicationData[0].userId);
 
-    }
-    catch(e){
+        isLoading = false;
+        update();
+      }));
+    } catch (e) {
       print(e.toString());
     }
+  }
 
+  Future<void> getFreelancer(String freelancerId) async {
+    try {
+      await _firestore
+          .collection('freelancers')
+          .where('freelancerId', isEqualTo: freelancerId)
+          .get()
+          .then(((value) {
+        freelancerData =
+            value.docs.map((e) => Freelancer.fromJson(e.data())).toList();
+        debugPrint(freelancerData[0].experience.toString());
+
+        isLoading = false;
+        update();
+      }));
+    } catch (e) {
+      print(e.toString());
     }
-    
-  Future <void> getRole() async{
-      
-    try{
-      String ? clientId = auth.currentUser?.uid;
+  }
+
+  Future<void> getRole() async {
+    try {
+      String? clientId = auth.currentUser?.uid;
       String uid = clientId.toString();
       await _firestore
-                  .collection('users')
-                  .where('userId' ,isEqualTo: uid)
-                  .get()
-                  .then(((value) {
-                    
-                      roledata = value.docs.map((e) => Role.fromJson(e.data())).toList();  
-                      debugPrint(roledata[0].email);
-                       getProject(uid);
-                       
-                      isLoading = false;
-                     
-                      
-                      update();
-                  
-                 
-                  }));
-                 
-    }
+          .collection('users')
+          .where('userId', isEqualTo: uid)
+          .get()
+          .then(((value) {
+        roledata = value.docs.map((e) => Role.fromJson(e.data())).toList();
+        debugPrint(roledata[0].email);
+        getProject(uid);
 
-    catch(e){
+        isLoading = false;
+
+        update();
+      }));
+    } catch (e) {
       print(e.toString());
     }
-    
-}
-
+  }
 }

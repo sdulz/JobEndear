@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:job_endear/Models/project.dart';
 import 'package:job_endear/Screens/Home/Widget/bottom_nav_bar.dart';
 
-import 'package:job_endear/Screens/ProjectList/projectlist.dart';
+import 'package:job_endear/Screens/ProjectList/upload_job.dart';
 import 'package:job_endear/Screens/Project_detail/project_detail.dart';
 
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
@@ -20,14 +20,14 @@ class _SearchScreenState extends State<SearchScreen> {
     return TextField(
       controller: _searchQueryController,
       autocorrect: true,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         hintText: 'Search for job...',
         border: InputBorder.none,
         hintStyle: TextStyle(
           color: Colors.white,
         ),
       ),
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white,
         fontSize: 20,
       ),
@@ -38,7 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
   List<Widget> _buildActions() {
     return <Widget>[
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           _clearSearchQuery();
         },
@@ -56,19 +56,19 @@ class _SearchScreenState extends State<SearchScreen> {
   void updateSearchQuery(String newQuery) {
     setState(() {
       searchQuery = newQuery;
-      print(searchQuery);
+      debugPrint(searchQuery);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color.fromARGB(255, 113, 46, 248), Colors.blueAccent],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          stops: const [0.3, 0.8],
+          stops: [0.3, 0.8],
         ),
       ),
       child: Scaffold(
@@ -76,19 +76,21 @@ class _SearchScreenState extends State<SearchScreen> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color.fromARGB(255, 113, 46, 248), Colors.blueAccent],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                stops: const [0.3, 0.8],
+                stops: [0.3, 0.8],
               ),
             ),
           ),
           leading: IconButton(
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Jobscreen()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UploadJobNow()));
             },
             icon: const Icon(Icons.arrow_back),
           ),
@@ -115,8 +117,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       final jobList = snapshot.data!.docs
                           .map((doc) => Project.fromFirestore(doc))
                           .toList();
-                      return Container(
-                          child: ListView.builder(
+                      return ListView.builder(
                         itemCount: jobList.length,
                         itemBuilder: (BuildContext context, int index) {
                           final project = jobList[index];
@@ -133,8 +134,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 color: title.contains(keyword)
-                                    ? Color.fromARGB(255, 255, 255, 255)
-                                    : Color.fromARGB(255, 0, 230, 255),
+                                    ? const Color.fromARGB(255, 255, 255, 255)
+                                    : Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                             subtitle: Text(
@@ -142,8 +143,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 color: description.contains(keyword)
-                                    ? Color.fromARGB(255, 255, 255, 255)
-                                    : Color.fromARGB(255, 127, 255, 122),
+                                    ? const Color.fromARGB(255, 255, 255, 255)
+                                    : Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                             onTap: () {
@@ -153,16 +154,18 @@ class _SearchScreenState extends State<SearchScreen> {
                                 MaterialPageRoute(
                                     builder: (_) =>
                                         ProjectDetailsPage(project: project)),
-                              ).then((value) {
-                                // return back to search screen
-                                if (value != null && value) {
-                                  Navigator.pop(context);
-                                }
-                              });
+                              ).then(
+                                (value) {
+                                  // return back to search screen
+                                  if (value != null && value) {
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              );
                             },
                           );
                         },
-                      ));
+                      );
                     }
                   }
                   return const Center(child: Text('No jobs found.'));

@@ -3,123 +3,124 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:job_endear/Models/user.dart';
 import 'package:job_endear/Services/database.dart';
 import 'package:flutter/material.dart';
-import 'package:quiver/iterables.dart';
 
+class AuthService extends ChangeNotifier {
+  final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  bool loading = false;
 
-
-class AuthService extends ChangeNotifier{
-   
-   final auth.FirebaseAuth _auth= auth.FirebaseAuth.instance;
-   CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-   bool loading = false;
-
-   //create user obj based on FirebaseUser
-    User? _userFromFirebaseUser(auth.User? user) {
-      if (user != null) {
-        return User(uid: user.uid);
-      }
-      return null;
-}
+  //create user obj based on FirebaseUser
+  User? _userFromFirebaseUser(auth.User? user) {
+    if (user != null) {
+      return User(uid: user.uid);
+    }
+    return null;
+  }
 
   //auth change user stream
-  Stream<User?> get user{
+  Stream<User?> get user {
     loading = true;
     notifyListeners();
-    return _auth.authStateChanges()
-    .map(_userFromFirebaseUser);
-
+    return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
-  
-  // sign in with email & password
- Future <User?> signInWithEmailAndPassword(String email, String password) async {
-   
 
+  // sign in with email & password
+  Future<User?> signInWithEmailAndPassword(
+      String email, String password) async {
     try {
       debugPrint("1st line");
-      auth.UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      auth.UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       auth.User? user = result.user;
       // count = user.
       // users.doc(user?.uid).update({"count":count + 1});
       loading = true;
       notifyListeners();
       return user != null ? _userFromFirebaseUser(user) : null;
-      } 
-    catch (error) {
-
+    } catch (error) {
       print(error.toString());
       return null;
-      
     }
   }
 
+  // Register with Client
+  Future<User?> registerClient(
+      String email,
+      String password,
+      String firstName,
+      String lastName,
+      String? role,
+      String? companyName,
+      String? companyAddress) async {
+    try {
+      auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      auth.User? user = result.user;
+      String? uid = user?.uid;
+      loading = true;
+      notifyListeners();
 
-   // Register with Client
-    Future<User?> registerClient(String email, String password, String firstName, String lastName,String ? role, String ? companyName, String? companyAddress) async {
-      try {
-        auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-        auth.User? user = result.user;
-        String ? uid = user?.uid;
-        loading = true;
-        notifyListeners();
-
-        // Create a new document for the user with the uid
-        final DatabaseService databaseService = DatabaseService();
-        databaseService.addClientData(
-          email: email,
-          firstName: firstName,
-          lastName:lastName,
-          role: "Client" ,
-          companyName:companyName,
-          companyAddress:companyAddress ,
-          uid: uid,
-
-        ); 
-        debugPrint('Client');
-        return _userFromFirebaseUser(user);
-  } catch (error) {
-    print(error.toString());
-    return null;
+      // Create a new document for the user with the uid
+      final DatabaseService databaseService = DatabaseService();
+      databaseService.addClientData(
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        role: "Client",
+        companyName: companyName,
+        companyAddress: companyAddress,
+        uid: uid,
+      );
+      debugPrint('Client');
+      return _userFromFirebaseUser(user);
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
   }
-}
 
 //Register With Freelancer
- Future<User?> registerFreelancer(String email, String password, String firstName, String lastName, String ? role,String ? freelancerTitle, String? freelancerDescription) async {
-  try {
-    auth.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    auth.User? user = result.user;
-    String ? uid = user?.uid;
-    loading = true;
-    notifyListeners();
+  Future<User?> registerFreelancer(
+      String email,
+      String password,
+      String firstName,
+      String lastName,
+      String? role,
+      String? freelancerTitle,
+      String? freelancerDescription) async {
+    try {
+      auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      auth.User? user = result.user;
+      String? uid = user?.uid;
+      loading = true;
+      notifyListeners();
 
-    // Create a new document for the user with the uid
-    final DatabaseService databaseService = DatabaseService();
-    databaseService.addFreelancerData(
-      email: email,
-      firstName: firstName,
-      lastName:lastName,
-      role:"Freelancer",
-      freelancerTitle:freelancerTitle,
-      freelancerDescription: freelancerDescription,
-      uid: uid,
-    );
-    debugPrint('Freelancer');
-    return _userFromFirebaseUser(user);
-  } catch (error) {
-    print(error.toString());
-    return null;
+      // Create a new document for the user with the uid
+      final DatabaseService databaseService = DatabaseService();
+      databaseService.addFreelancerData(
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        role: "Freelancer",
+        freelancerTitle: freelancerTitle,
+        freelancerDescription: freelancerDescription,
+        uid: uid,
+      );
+      debugPrint('Freelancer');
+      return _userFromFirebaseUser(user);
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
   }
-}
-
 
   // sign out
-  Future signOut() async{
-    try{
+  Future signOut() async {
+    try {
       return await _auth.signOut();
-
-    }
-    catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }

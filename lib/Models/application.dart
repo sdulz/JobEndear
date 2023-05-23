@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ProjectApplication {
   late String userId;
   // late DateTime appliedAt;
@@ -23,5 +25,6 @@ class ProjectApplication {
     hiredBy = map['hiredBy'].toString();
     projectId = map['projectId'].toString();
   }
-  }
 
+  static fromSnapshot(QueryDocumentSnapshot<Object?> doc) {}
+}

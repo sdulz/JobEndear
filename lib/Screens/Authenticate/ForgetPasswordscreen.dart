@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:job_endear/Screens/Home/home.dart';
+import 'package:job_endear/Screens/Authenticate/sign_in.dart';
 
 class ForgetPassword extends StatefulWidget {
+  const ForgetPassword({super.key});
+
   @override
   State<ForgetPassword> createState() => _ForgetPasswordState();
 }
@@ -20,7 +22,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       );
       // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => Home()));
+          context,
+          MaterialPageRoute(
+              builder: (_) => SignIn(
+                    toggleView: () {},
+                  )));
     } catch (error) {
       Fluttertoast.showToast(msg: error.toString());
     }
@@ -30,29 +36,29 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromARGB(184, 77, 16, 232),
+      backgroundColor: const Color.fromARGB(255, 91, 133, 170),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'Forgot Password',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 255, 255, 255),
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Montserrat',
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               TextFormField(
                 controller: _forgetpassTextcontroller,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontFamily: 'Montserrat',
                   ),
@@ -71,18 +77,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   ),
                 ),
               ),
-              SizedBox(height: 50),
-              Container(
+              const SizedBox(height: 50),
+              SizedBox(
                 width: size.width * 0.8,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: MaterialButton(
-                    padding: EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
                     onPressed: () {
                       _fogetpassSubmitForm();
                     },
                     color: Colors.blue,
-                    child: Text(
+                    child: const Text(
                       'Reset Password',
                       style: TextStyle(
                         color: Colors.white,

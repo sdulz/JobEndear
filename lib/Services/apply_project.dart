@@ -3,16 +3,17 @@ import '../Models/project.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
- final FirebaseFirestore _db = FirebaseFirestore.instance;
+final FirebaseFirestore _db = FirebaseFirestore.instance;
+
 class ApplyProjectController {
-   CollectionReference _applications = _db.collection('applications');
+  CollectionReference _applications = _db.collection('applications');
   static Future<void> applyForJob(BuildContext context, Project project) async {
     // Show a dialog to confirm that the user wants to apply for the job
     bool shouldApply = await showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Apply for Job'),
+          title: const Text('Apply for Job'),
           content: Text('Are you sure you want to apply for this job?'),
           actions: <Widget>[
             TextButton(
@@ -40,10 +41,7 @@ class ApplyProjectController {
       String userId = FirebaseAuth.instance.currentUser!.uid;
 
       // Add the application to the "applications" subcollection of the job document
-      firestore
-          .collection('applications')
-          .doc(userId)
-          .set({
+      firestore.collection('applications').doc(userId).set({
         'userId': userId,
         'projectId': project.projectId, // add the project ID to the application
         'appliedAt': DateTime.now(),
@@ -51,7 +49,7 @@ class ApplyProjectController {
 
       // Show a snackbar to confirm that the user's application has been submitted
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Your application has been submitted.'),
         ),
       );

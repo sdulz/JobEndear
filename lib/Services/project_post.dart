@@ -14,22 +14,23 @@ class Projectpost {
     }
 
     try {
-      await _projectCollection.add({
-        'title': project.title,
-        'description': project.description,
-        // 'jobField': project.projectField,
-        'category': project.category,
-        'location': project.location,
-        'budget': project.budget,
-        // 'deadline': project.deadline,
-        'clientId': user.uid,
-        // 'status': project.status,
-        'requirements': project.requirements,
-        'skills': project.skills,
-        'experience': project.experience,
-        'createdAt': DateTime.now(),
-        
-      },).then((DocumentReference ref ) => ref.update({'projectId':ref.id}) );
+      await _projectCollection.add(
+        {
+          'title': project.title,
+          'description': project.description,
+          // 'jobField': project.projectField,
+          'category': project.category,
+          'location': project.location,
+          'budget': project.budget,
+          // 'deadline': project.deadline,
+          'clientId': user.uid,
+          // 'status': project.status,
+          'requirements': project.requirements,
+          'skills': project.skills,
+          'experience': project.experience,
+          'createdAt': DateTime.now(),
+        },
+      ).then((DocumentReference ref) => ref.update({'projectId': ref.id}));
       debugPrint("sucessfull");
     } catch (e) {
       throw Exception('Failed to post project: $e');
@@ -59,4 +60,3 @@ class Projectpost {
     });
   }
 }
-

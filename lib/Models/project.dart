@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Project {
@@ -37,7 +36,7 @@ class Project {
   factory Project.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data() as Map<String, dynamic>;
     return Project(
-      projectId:data['projectId']??'',
+      projectId: data['projectId'] ?? '',
       title: data['title'] ?? '',
       description: data['description'] ?? '',
       // projectField: data['projectField'] ?? '',
@@ -51,11 +50,10 @@ class Project {
       createdAt: (data['createdAt'] as Timestamp).toDate(),
     );
   }
-  
 
   Map<String, dynamic> toFirestore() {
     return {
-      'pid':'pid',
+      'pid': 'pid',
       'title': title,
       'description': description,
       // 'projectField': projectField,
@@ -68,10 +66,11 @@ class Project {
       'createdAt': createdAt,
     };
   }
-    Project.fromJson(Map<String, dynamic> map) {
+
+  Project.fromJson(Map<String, dynamic> map) {
     projectId = map['projectId'].toString();
     title = map['title'].toString();
-     budget = (map['budget'] ?? 0).toDouble();
+    budget = (map['budget'] ?? 0).toDouble();
     description = map['description'].toString();
     category = map['category'].toString();
     location = map['location'].toString();
@@ -79,6 +78,5 @@ class Project {
     requirements = map['requirements'].toString();
     skills = map['skills'].toString();
     experience = map['experience'].toString();
-   
   }
 }

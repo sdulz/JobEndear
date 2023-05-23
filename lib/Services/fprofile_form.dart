@@ -7,7 +7,7 @@ class FreelancerController {
       FirebaseFirestore.instance.collection('freelancers');
 
   Future<void> saveFreelancer(Freelancer freelancer) async {
-  final uid = FirebaseAuth.instance.currentUser!.uid;
-  await _freelancerCollection.doc(uid).set(freelancer.toMap());
-}
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    await _freelancerCollection.doc(uid).set(freelancer.toMap());
+  }
 }
