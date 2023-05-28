@@ -7,9 +7,13 @@ A freelancing app made with Flutter Dart and Firebase which has the following fe
  * Follows MVC pattern
  * Can login as freelancer or client
  * Freelancer Features:
+
         a) Can view and apply to projects(jobs)
+        
         b) Can create a Freelancer Profile
+        
         c) Can post their own CV in pdf (Stored in Firestore)
+        
         d) Is Recommended with top 5 jobs according to the profile uploaded by the Freelancer.(Uses Content Based Filtering for recommendation)
  
   * Client Features:
