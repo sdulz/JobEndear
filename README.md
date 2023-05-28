@@ -1,16 +1,22 @@
 # job_endear
+Objective:
+To create a freelancing app which uses content based filtering to recommend jobs to the freelancer according to their 
+skills and job catrgory they have uploaded in their Freelancer Profile.
 
-A new Flutter project.
+A freelancing app made with Flutter Dart and Firebase which has the following features:
+ * Follows MVC pattern
+ * Can login as freelancer or client
+ * Freelancer Features:
+        a) Can view and apply to projects(jobs)
+        b) Can create a Freelancer Profile
+        c) Can post their own CV in pdf (Stored in Firestore)
+        d) Is Recommended with top 5 jobs according to the profile uploaded by the Freelancer.(Uses Content Based Filtering for recommendation)
+ 
+  * Client Features:
+         a) Can Post projects(jobs) 
+  
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
