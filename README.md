@@ -17,6 +17,7 @@ A freelancing app made with Flutter Dart and Firebase which has the following fe
         d) Is Recommended with top 5 jobs according to the profile uploaded by the Freelancer.(Uses Content Based Filtering for recommendation)
  
   * Client Features:
+  
          a) Can Post projects(jobs) 
   
 
