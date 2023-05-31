@@ -1,7 +1,7 @@
 # job_endear
 Objective:
 To create a freelancing app which uses content based filtering to recommend jobs to the freelancer according to their 
-skills and job catrgory they have uploaded in their Freelancer Profile.
+skills and job category they have uploaded in their Freelancer Profile.
 
 A freelancing app made with Flutter Dart and Firebase which has the following features:
  * Follows MVC pattern
